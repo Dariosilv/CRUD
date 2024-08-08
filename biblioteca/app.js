@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var autoresRouter = require('./routes/autores');
+var nacionalidadesRouter = require('./routes/nacionalidades');
 
 var app = express();
 
@@ -21,10 +23,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/autores', autoresRouter);
+app.use('/nacionalidades', nacionalidadesRouter);
 
-// catch 404 and forward to error handler
+
+
+
+// catch 404 e encaminhar para o manipulador de erros
+/*
 app.use(function(req, res, next) {
   next(createError(404));
+});*/
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
 });
 
 // error handler
